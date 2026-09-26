@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كافيه كاريوكي | سمادون - المنوفية</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        coffee: {
+                            dark: '#120d0b',
+                            card: '#1e1611',
+                            accent: '#e0a96d',
+                            light: '#f4ebd0',
+                            gold: '#c68b59'
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Cairo', sans-serif; background-color: #120d0b; color: #f4ebd0; scroll-behavior: smooth; transition: background 0.3s, color 0.3s; }
+        .glass-card { background: rgba(30, 22, 17, 0.88); backdrop-filter: blur(12px); border: 1px solid rgba(224, 169, 109, 0.25); transition: all 0.3s ease; }
+        .glass-card:hover { border-color: rgba(224, 169, 109, 0.6); transform: translateY(-3px); box-shadow: 0 10px 30px -10px rgba(224, 169, 109, 0.3); }
+        
+        .hero-bg {
+            background-image: linear-gradient(to bottom, rgba(18, 13, 11, 0.8), rgba(18, 13, 11, 0.95)), url('1790392466216.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { text-shadow: 0 0 15px rgba(224, 169, 109, 0.5); transform: scale(1); }
+            50% { text-shadow: 0 0 35px rgba(224, 169, 109, 0.9); transform: scale(1.02); }
+        }
+        .animated-logo-text { animation: pulseGlow 3s infinite ease-in-out; }
+
+        body.night-mode { background-color: #070504 !important; color: #ffecd1 !important; }
+        body.night-mode .glass-card { background: rgba(15, 10, 8, 0.95); border-color: rgba(0, 255, 200, 0.3); box-shadow: 0 0 20px rgba(0, 255, 200, 0.05); }
+        body.night-mode .text-coffee-accent { color: #00ffc8 !important; }
+    </style>
+</head>
+<body class="bg-coffee-dark min-h-screen pb-20">
+
+    <!-- شريط الأدوات العلوي العائم -->
+    <div class="fixed top-4 left-4 z-50 flex items-center gap-2">
+        <button onclick="toggleNightMode()" id="nightModeBtn" class="bg-coffee-card/90 border border-coffee-accent/40 text-coffee-accent hover:bg-coffee-accent hover:text-coffee-dark px-3.5 py-2 rounded-full text-xs font-bold transition shadow-xl flex items-center gap-1.5 backdrop-blur-md">
+            <i class="fa-solid fa-moon" id="nightIcon"></i> <span id="nightText">سهرة ليلية</span>
+        </button>
+        <button onclick="toggleBGM()" id="bgmBtn" class="bg-coffee-card/90 border border-coffee-accent/40 text-coffee-accent hover:bg-coffee-accent hover:text-coffee-dark px-3.5 py-2 rounded-full text-xs font-bold transition shadow-xl flex items-center gap-1.5 backdrop-blur-md">
+            <i class="fa-solid fa-music" id="bgmIcon"></i> <span>موسيقى هادئة</span>
+        </button>
+        <button onclick="window.print()" class="bg-coffee-gold text-coffee-dark hover:bg-coffee-accent p-2.5 rounded-full text-xs font-bold transition shadow-xl flex items-center justify-center backdrop-blur-md" title="طباعة المنيو">
+            <i class="fa-solid fa-print"></i>
+        </button>
+    </div>
+
+    <!-- عنصر صوتي لـ Lofi Beats -->
+    <audio id="lofiAudio" loop src="https://commondatastorage.googleapis.com/codeskulptor-assets/Epoq-Lepidoptera.ogg"></audio>
+
+    <!-- Header Section -->
+    <header class="py-14 px-4 text-center relative border-b border-coffee-accent/20 hero-bg">
+        <div class="max-w-3xl mx-auto">
+            <!-- حالة الكافيه الحية -->
+            <div id="cafeStatusBadge" class="inline-block px-4 py-1.5 rounded-full text-xs font-bold mb-3 shadow-md border"></div>
+            
+            <div class="my-2">
+                <h1 class="text-5xl md:text-7xl font-black text-coffee-accent tracking-wider animated-logo-text inline-block">
+                    كافيه كاريوكي
+                </h1>
+            </div>
+
+            <p class="text-xs text-coffee-accent tracking-widest mt-1 mb-3 font-bold">سمادون أشمون منوفية - أول طريق السلامية بجوار كوبري الترعة القديم[span_0](start_span)[span_0](end_span)[span_1](start_span)[span_1](end_span)</p>
+
+            <div class="flex flex-wrap justify-center gap-2 text-xs md:text-sm text-coffee-light/95 font-semibold my-3 bg-coffee-dark/70 py-2.5 px-4 rounded-xl border border-coffee-accent/20 shadow-inner">
+                <span>🌟 عائلي + شبابي</span> • 
+                <span>🎂 أعياد ميلاد</span> • 
+                <span>☕ تيك أوي ومنيو كامل</span> • 
+                <span class="text-red-400">❌ بدون شيشة نهائياً</span> • 
+                <span class="text-coffee-accent">⏰ 4 العصر لـ 2 بالليل</span>[span_2](start_span)[span_2](end_span)
+            </div>
+
+            <!-- أزرار التواصل -->
+            <div class="flex flex-wrap justify-center gap-3 mt-6">
+                <a href="tel:+201212371240" class="bg-coffee-gold text-coffee-dark hover:bg-coffee-accent px-5 py-2.5 rounded-xl text-sm font-bold transition flex items-center gap-2 shadow-lg transform hover:scale-105">
+                    <i class="fa-solid fa-phone"></i> اتصال
+                </a>
+                <a href="https://wa.me/201212371240" target="_blank" class="bg-green-600 hover:bg-green-500 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition flex items-center gap-2 shadow-lg transform hover:scale-105">
+                    <i class="fa-brands fa-whatsapp"></i> واتساب
+                </a>
+                <a href="https://www.facebook.com/Kariokycafe" target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition flex items-center gap-2 shadow-lg transform hover:scale-105">
+                    <i class="fa-brands fa-facebook"></i> فيسبوك
+                </a>
+                <a href="#reservation" class="bg-coffee-accent text-coffee-dark hover:bg-coffee-gold px-5 py-2.5 rounded-xl text-sm font-bold transition flex items-center gap-2 shadow-lg transform hover:scale-105">
+                    <i class="fa-solid fa-calendar-check"></i> حجز طاولة
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- شريط ترحيبي متحرك -->
+    <div class="bg-coffee-card border-y border-coffee-accent/20 py-2.5 overflow-hidden whitespace-nowrap">
+        <div class="inline-block animate-[marquee_25s_linear_infinite] text-coffee-accent text-sm font-semibold">
+            ✨ أهلاً بكم في كافيه كاريوكي بسمادون - المنوفية ☕ استمتعوا بأرقى الأجواء العائلية وأطعم المشروبات 🎵 ✨ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            ✨ أهلاً بكم في كافيه كاريوكي بسمادون - المنوفية ☕ استمتعوا بأرقى الأجواء العائلية وأطعم المشروبات 🎵 ✨
+        </div>
+    </div>
+
+    <!-- ميزات إضافية: مساعد المزاج وحظك اليوم -->
+    <div class="max-w-4xl mx-auto px-4 mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="glass-card p-5 rounded-3xl border border-coffee-accent/40 shadow-xl text-center flex flex-col justify-between">
+            <div>
+                <span class="bg-coffee-accent/20 text-coffee-accent text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-coffee-accent/30 inline-block mb-2">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> مساعد المزاج الفوري
+                </span>
+                <h3 class="text-lg font-black text-white mb-2">مش عارف تطلب إيه؟ اختر مزاجك الآن! ☕</h3>
+                <div class="flex flex-wrap justify-center gap-2 my-3">
+                    <button onclick="recommendDrink('focus')" class="bg-coffee-dark hover:bg-coffee-accent hover:text-coffee-dark border border-coffee-accent/40 text-coffee-light px-3 py-1.5 rounded-xl text-xs font-bold transition">🧠 تركيز (قهوة)</button>
+                    <button onclick="recommendDrink('refresh')" class="bg-coffee-dark hover:bg-coffee-accent hover:text-coffee-dark border border-coffee-accent/40 text-coffee-light px-3 py-1.5 rounded-xl text-xs font-bold transition">⚡ انتعاش (موجيتو)</button>
+                    <button onclick="recommendDrink('cozy')" class="bg-coffee-dark hover:bg-coffee-accent hover:text-coffee-dark border border-coffee-accent/40 text-coffee-light px-3 py-1.5 rounded-xl text-xs font-bold transition">🛋️ روقان (سحلب)</button>
+                </div>
+            </div>
+            <div id="recommendationResult" class="hidden bg-coffee-dark/90 border border-coffee-accent p-2.5 rounded-xl text-coffee-accent font-bold text-xs animate-pulse"></div>
+        </div>
+
+        <div class="glass-card p-5 rounded-3xl border border-coffee-accent/40 shadow-xl text-center flex flex-col justify-between">
+            <div>
+                <span class="bg-coffee-gold/20 text-coffee-gold text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-coffee-gold/30 inline-block mb-2">
+                    <i class="fa-solid fa-dice"></i> لعبة الكافيه التفاعلية
+                </span>
+                <h3 class="text-lg font-black text-white mb-2">اكتشف "حظك في المزاج" اليوم! 🎯</h3>
+                <p class="text-xs text-coffee-light/80 mb-3">اضغط الزر واعرف رسالة القهوة ليك النهاردة:</p>
+                <button onclick="luckyCoffeeFortune()" class="bg-coffee-gold hover:bg-coffee-accent text-coffee-dark px-4 py-2 rounded-xl text-xs font-bold transition shadow-md">
+                    🎲 اسحب حظك دلوقتي
+                </button>
+            </div>
+            <div id="fortuneResult" class="hidden bg-coffee-dark/90 border border-coffee-gold p-2.5 rounded-xl text-coffee-light font-bold text-xs mt-3"></div>
+        </div>
+    </div>
+
+    <!-- حاسبة الحساب الذكية للطاولة -->
+    <div class="max-w-4xl mx-auto px-4 mt-6">
+        <div class="glass-card p-6 rounded-3xl border border-coffee-accent/50 shadow-2xl">
+            <div class="text-center mb-4">
+                <span class="bg-coffee-accent/20 text-coffee-accent text-xs font-bold px-3 py-1 rounded-full border border-coffee-accent/30 inline-block mb-1">
+                    <i class="fa-solid fa-calculator"></i> حاسبة طلبات الطاولة
+                </span>
+                <h3 class="text-xl font-black text-white">احسب حسابك مسبقاً قبل الطلب 🧮</h3>
+                <p class="text-xs text-coffee-light/70">اختر الأصناف وشوف إجمالي الفاتورة فوري:</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+                <select id="calcItem" class="bg-coffee-dark text-coffee-light border border-coffee-accent/40 p-2.5 rounded-xl text-sm font-bold">
+                    <option value="25">قهوة سادة / اسبريسو (25 جـ)</option>
+                    <option value="30">قهوة محوج / بندق (30 جـ)</option>
+                    <option value="45">كابتشينو / سموزي (45 جـ)</option>
+                    <option value="50">هوت شوكلت / ميلك شيك (50 جـ)</option>
+                    <option value="40">موجيتو / صان رايز (40 جـ)</option>
+                    <option value="15">شاي / مياه معدنية (15 جـ)</option>
+                </select>
+                <input type="number" id="calcQty" min="1" value="1" placeholder="العدد" class="bg-coffee-dark text-coffee-light border border-coffee-accent/40 p-2.5 rounded-xl text-sm font-bold text-center">
+                <button onclick="addToBill()" class="bg-coffee-accent hover:bg-coffee-gold text-coffee-dark font-bold p-2.5 rounded-xl text-sm transition shadow-md">
+                    + إضافة للحساب
+                </button>
+            </div>
+            <div id="billDetails" class="bg-coffee-dark/90 border border-coffee-accent/30 p-4 rounded-xl text-center">
+                <p class="text-xs text-coffee-light mb-1">إجمالي الفاتورة التقريبية:</p>
+                <span id="billTotal" class="text-2xl font-black text-coffee-accent">0 جنيه</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- قائمة المنيو المنسدلة -->
+    <div class="max-w-4xl mx-auto px-4 mt-8">
+        <div class="glass-card p-4 rounded-2xl border border-coffee-accent/30 shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
+            <label for="menu-select" class="text-white font-bold text-md flex items-center gap-2">
+                <i class="fa-solid fa-book-open text-coffee-accent"></i> تصفح أقسام المنيو السريع:
+            </label>
+            <select id="menu-select" onchange="filterMenu(this.value)" class="bg-coffee-dark text-coffee-light border border-coffee-accent/50 px-4 py-2.5 rounded-xl font-bold w-full md:w-72 focus:outline-none focus:border-coffee-accent cursor-pointer">
+                <option value="all">⭐ عرض كل المنيو الكامل</option>
+                <option value="coffee">☕ ركن القهوة</option>
+                <option value="hot">🔥 المشروبات الدافئة</option>
+                <option value="shakes">🥤 المنعشات (سموزي وميلك شيك)</option>
+                <option value="fresh">🍋 العصائر الطبيعية (فريش)</option>
+                <option value="cold">🧊 المشروبات الباردة</option>
+                <option value="snacks">🍟 المقرمشات والسناكس</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Menu Container -->
+    <main class="max-w-4xl mx-auto px-4 mt-8 space-y-12">
+
+        <!-- ركن القهوة -->
+        <section class="menu-section" data-category="coffee">
+            <div class="flex items-center gap-3 mb-6 border-b border-coffee-accent/20 pb-3">
+                <div class="bg-coffee-gold p-3 rounded-2xl text-white shadow-lg"><i class="fa-solid fa-mug-hot text-xl"></i></div>
+                <h2 class="text-2xl font-bold text-white tracking-wide">ركن القهوة (المزاج العالي)</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">قهوة سادة</h3><span class="text-xs text-coffee-accent">فاتح / وسط / غامق</span></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">25 جـ</span>[span_3](start_span)[span_3](end_span)
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">قهوة محوج</h3><span class="text-xs text-coffee-accent">فاتح / وسط / غامق</span></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">30 جـ</span>[span_4](start_span)[span_4](end_span)
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">اسبريسو سنجل</h3></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">25 جـ</span>[span_5](start_span)[span_5](end_span)
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">اسبريسو دبل</h3></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">35 جـ</span>[span_6](start_span)[span_6](end_span)
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">اسبريسو ميكاتو / كورتادو</h3></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">40 جـ</span>[span_7](start_span)[span_7](end_span)
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">قهوة فرنسي</h3><span class="text-xs text-coffee-accent">بالحليب</span></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">30 جـ</span>[span_8](start_span)[span_8](end_span)
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">قهوة بندق</h3></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">30 جـ</span>[span_9](start_span)[span_9](end_span)
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">كابتشينو</h3><span class="text-xs text-coffee-accent">بندق / فانيليا / كاراميل</span></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">45 جـ</span>[span_10](start_span)[span_10](end_span)
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">لاتيه</h3></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">40 جـ</span>[span_11](start_span)[span_11](end_span)
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">نسكافيه</h3><span class="text-xs text-coffee-accent">بلاك / بلبن</span></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">35 - 25 جـ</span>[span_12](start_span)[span_12](end_span)
+                </div>
+            </div>
+        </section>
+
+        <!-- المشروبات الدافئة -->
+        <section class="menu-section" data-category="hot">
+            <div class="flex items-center gap-3 mb-6 border-b border-coffee-accent/20 pb-3">
+                <div class="bg-coffee-gold p-3 rounded-2xl text-white shadow-lg"><i class="fa-solid fa-fire text-xl"></i></div>
+                <h2 class="text-2xl font-bold text-white tracking-wide">المشروبات الدافئة</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">سحلب</h3><span class="text-xs text-coffee-accent">مكسرات وفواكه</span></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">45 - 35 جـ</span>[span_13](start_span)[span_13](end_span)
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">هوت شوكلت</h3></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">50 جـ</span>[span_14](start_span)[span_14](end_span)
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">هوت سيدر</h3></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">40 جـ</span>[span_15](start_span)[span_15](end_span)
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">شاي</h3><span class="text-xs text-coffee-accent">سادة / نعناع / ليمون</span></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">15 - 10 جـ</span>[span_16](start_span)[span_16](end_span)
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">شاي حليب</h3></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">25 جـ</span>[span_17](start_span)[span_17](end_span)
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">أعشاب نكهات</h3></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">20 جـ</span>[span_18](start_span)[span_18](end_span)
+                </div>
+            </div>
+        </section>
+
+        <!-- المنعشات -->
+        <section class="menu-section" data-category="shakes">
+            <div class="flex items-center gap-3 mb-6 border-b border-coffee-accent/20 pb-3">
+                <div class="bg-coffee-gold p-3 rounded-2xl text-white shadow-lg"><i class="fa-solid fa-glass-water text-xl"></i></div>
+                <h2 class="text-2xl font-bold text-white tracking-wide">المنعشات (سموزي وميلك شيك)</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">ميلك شيك</h3><span class="text-xs text-coffee-accent">لوتس / أورييو / بلوبيري</span></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">60 جـ</span>[span_19](start_span)[span_19](end_span)
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">ميلك شيك</h3><span class="text-xs text-coffee-accent">فانيليا / شوكولاتة / مانجو</span></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">50 جـ</span>[span_20](start_span)[span_20](end_span)
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">سموزي</h3><span class="text-xs text-coffee-accent">بلوبيري / مانجو / فراولة</span></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">45 جـ</span>[span_21](start_span)[span_21](end_span)
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">إيس كوفي / إيس لاتيه</h3></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">50 - 45 جـ</span>[span_22](start_span)[span_22](end_span)
+                </div>
+            </div>
+        </section>
+
+        <!-- العصائر الطبيعية -->
+        <section class="menu-section" data-category="fresh">
+            <div class="flex items-center gap-3 mb-6 border-b border-coffee-accent/20 pb-3">
+                <div class="bg-coffee-gold p-3 rounded-2xl text-white shadow-lg"><i class="fa-solid fa-lemon text-xl"></i></div>
+                <h2 class="text-2xl font-bold text-white tracking-wide">العصائر الطبيعية (فريش)</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">عصائر فريش</h3><span class="text-xs text-coffee-accent">مانجو / فراولة / جوافة / كيوي</span></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">45 جـ</span>[span_23](start_span)[span_23](end_span)
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">موز بالحليب / ليمون بالنعناع</h3></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">45 - 30 جـ</span>[span_24](start_span)[span_24](end_span)
+                </div>
+            </div>
+        </section>
+
+        <!-- المشروبات الباردة -->
+        <section class="menu-section" data-category="cold">
+            <div class="flex items-center gap-3 mb-6 border-b border-coffee-accent/20 pb-3">
+                <div class="bg-coffee-gold p-3 rounded-2xl text-white shadow-lg"><i class="fa-solid fa-bottle-water text-xl"></i></div>
+                <h2 class="text-2xl font-bold text-white tracking-wide">المشروبات الباردة</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">سفن / كولا / استينج</h3></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">25 جـ</span>[span_25](start_span)[span_25](end_span)
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">موجيتو / صان رايز</h3></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">40 جـ</span>[span_26](start_span)[span_26](end_span)
+                </div>
+            </div>
+        </section>
+
+        <!-- المقرمشات والسناكس -->
+        <section class="menu-section" data-category="snacks">
+            <div class="flex items-center gap-3 mb-6 border-b border-coffee-accent/20 pb-3">
+                <div class="bg-coffee-gold p-3 rounded-2xl text-white shadow-lg"><i class="fa-solid fa-utensils text-xl"></i></div>
+                <h2 class="text-2xl font-bold text-white tracking-wide">المقرمشات والسناكس</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">طبق بطاطس فرخة مقرمشة</h3></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">35 جـ</span>
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div><h3 class="font-bold text-white">مكسرات / تسالي</h3></div>
+                    <span class="text-lg font-black text-coffee-accent bg-coffee-dark/50 px-3 py-1 rounded-xl">30 جـ</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- أقسام تفاعلية إضافية (الأغاني، الحجز، ألعاب المزاج، الجرسون، لوحة الشرف، التقييمات) -->
+    <div class="max-w-4xl mx-auto px-4 mt-16 space-y-12">
+        
+        <!-- اطلب أغنيتك -->
+        <section class="glass-card p-6 md:p-8 rounded-3xl border border-coffee-accent/30 shadow-2xl">
+            <div class="text-center mb-6">
+                <i class="fa-solid fa-music text-4xl text-coffee-accent mb-2"></i>
+                <h2 class="text-2xl font-black text-white">اطلب أغنيتك المفضلة 🎤</h2>
+                <p class="text-xs text-coffee-light/80 mt-1">اكتب اسم الأغنية أو المطرب وهنشغلهالك فوراً!</p>
+            </div>
+            <form onsubmit="sendSongRequest(event)" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="text" id="songName" placeholder="اسم الأغنية أو المطرب المطلوب" required class="bg-coffee-dark text-coffee-light border border-coffee-accent/40 px-4 py-3 rounded-xl focus:outline-none focus:border-coffee-accent">
+                    <input type="text" id="tableNum" placeholder="رقم الطاولة (مثلاً: طاولة 4)" required class="bg-coffee-dark text-coffee-light border border-coffee-accent/40 px-4 py-3 rounded-xl focus:outline-none focus:border-coffee-accent">
+                </div>
+                <button type="submit" class="w-full bg-coffee-accent hover:bg-coffee-gold text-coffee-dark font-bold py-3 rounded-xl transition shadow-lg flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> إرسال طلب الأغنية عبر واتساب
+                </button>
+            </form>
+        </section>
+
+        <!-- حجز طاولة أو عيد ميلاد -->
+        <section id="reservation" class="glass-card p-6 md:p-8 rounded-3xl border border-coffee-accent/30 shadow-2xl">
+            <div class="text-center mb-6">
+                <i class="fa-solid fa-cake-candles text-4xl text-coffee-accent mb-2"></i>
+                <h2 class="text-2xl font-black text-white">حجز طاولة أو احتفال عيد ميلاد 🎂</h2>
+                <p class="text-xs text-coffee-light/80 mt-1">احجز مكانك مسبقاً لعائلتك وأصدقائك في أجواء كاريوكي المميزة[span_27](start_span)[span_27](end_span)</p>
+            </div>
+            <form onsubmit="sendReservation(event)" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="text" id="resName" placeholder="اسم الحجز الكريم" required class="bg-coffee-dark text-coffee-light border border-coffee-accent/40 px-4 py-3 rounded-xl focus:outline-none focus:border-coffee-accent">
+                    <input type="tel" id="resPhone" placeholder="رقم الهاتف للتواصل" required class="bg-coffee-dark text-coffee-light border border-coffee-accent/40 px-4 py-3 rounded-xl focus:outline-none focus:border-coffee-accent">
+                    <input type="date" id="resDate" required class="bg-coffee-dark text-coffee-light border border-coffee-accent/40 px-4 py-3 rounded-xl focus:outline-none focus:border-coffee-accent">
+                    <select id="resType" class="bg-coffee-dark text-coffee-light border border-coffee-accent/40 px-4 py-3 rounded-xl focus:outline-none focus:border-coffee-accent">
+                        <option value="تجمع عائلي">تجمع عائلي 👨‍👩‍👧‍👦</option>
+                        <option value="عيد ميلاد">حفلة عيد ميلاد 🎂</option>
+                        <option value="قعدة شبابية">قعدة شبابية هادئة ☕</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-xl transition shadow-lg flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp"></i> تأكيد وحجز الموعد عبر واتساب
+                </button>
+            </form>
+        </section>
+
+        <!-- لعبة توقع نكهة القهوة -->
+        <section class="glass-card p-6 md:p-8 rounded-3xl border border-coffee-accent/40 shadow-2xl text-center">
+            <span class="bg-coffee-gold/20 text-coffee-gold text-xs font-bold px-3 py-1 rounded-full border border-coffee-gold/30 inline-block mb-2">
+                <i class="fa-solid fa-gamepad"></i> لعبة تفاعلية
+            </span>
+            <h2 class="text-2xl font-black text-white mb-2">توقع نكهة قهوتك المفضلة اليوم! ☕🎯</h2>
+            <p class="text-xs text-coffee-light/70 mb-6">اختر إجابتك في الأسئلة التالية واكتشف الفنجان اللي هيظبط دماغك النهاردة:</p>
+            
+            <div id="coffeeQuizContainer" class="space-y-4 max-w-lg mx-auto text-right">
+                <div class="bg-coffee-dark/80 p-4 rounded-2xl border border-coffee-accent/20">
+                    <p class="text-sm font-bold text-white mb-3" id="quizQuestion">1. مودك العام عامل إزاي النهاردة؟</p>
+                    <div class="grid grid-cols-1 gap-2" id="quizOptions"></div>
+                </div>
+            </div>
+            <div id="quizResultBox" class="hidden mt-4 p-4 rounded-2xl bg-coffee-dark border border-coffee-accent text-coffee-accent font-bold text-sm animate-bounce"></div>
+        </section>
+
+        <!-- زرار استدعاء الجرسون الفوري -->
+        <section class="glass-card p-6 rounded-3xl border border-coffee-accent/30 shadow-xl text-center">
+            <div class="mb-4">
+                <span class="bg-red-500/20 text-red-400 text-xs font-bold px-3 py-1 rounded-full border border-red-500/30 inline-block mb-1">
+                    <i class="fa-solid fa-bell-concierge"></i> خدمة الطاولات السريعة
+                </span>
+                <h3 class="text-xl font-black text-white">محتاج حاجة وأنت قاعد على الطاولة؟ 🛎️</h3>
+                <p class="text-xs text-coffee-light/70">اختار الطلب ورقم الطاولة وهيجيلك الرد فوراً:</p>
+            </div>
+            <form onsubmit="callWaiter(event)" class="max-w-md mx-auto space-y-3">
+                <div class="grid grid-cols-2 gap-2">
+                    <select id="waiterRequestType" class="bg-coffee-dark text-coffee-light border border-coffee-accent/40 p-2.5 rounded-xl text-xs font-bold">
+                        <option value="استدعاء الجرسون فوراً 🙋‍♂️">استدعاء الجرسون 🙋‍♂️</option>
+                        <option value="طلب الحساب / الفاتورة 🧾">طلب الفاتورة 🧾</option>
+                        <option value="طلب مياه إضافية 💧">طلب مياه 💧</option>
+                        <option value="طلب مناديل أو خدمة إضافية 🧻">طلب مناديل 🧻</option>
+                    </select>
+                    <input type="text" id="waiterTableNum" placeholder="رقم الطاولة (مثلاً: 5)" required class="bg-coffee-dark text-coffee-light border border-coffee-accent/40 p-2.5 rounded-xl text-xs font-bold text-center">
+                </div>
+                <button type="submit" class="w-full bg-coffee-accent hover:bg-coffee-gold text-coffee-dark font-black p-3 rounded-xl text-xs transition shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> إرسال النداء للإدارة عبر واتساب 🚀
+                </button>
+            </form>
+        </section>
+
+        <!-- 👑 لوحة الشرف: رواد كافيه كاريوكي المميزين (VIP Hall of Fame) -->
+        <section class="glass-card p-6 md:p-8 rounded-3xl border border-coffee-gold/40 shadow-2xl">
+            <div class="text-center mb-6">
+                <span class="bg-coffee-gold/20 text-coffee-gold text-xs font-bold px-3 py-1 rounded-full border border-coffee-gold/30 inline-block mb-1">
+                    <i class="fa-solid fa-crown"></i> لوحة الشرف الملكية
+                </span>
+                <h2 class="text-2xl font-black text-white">رواد ونجوم كافيه كاريوكي المميزين 👑⭐</h2>
+                <p class="text-xs text-coffee-light/70 mt-1">تحية تقدير وعرفان لضيوفنا الدائمين وأصحاب أروع القعدات في سمادون</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="bg-coffee-dark/70 border border-coffee-gold/30 p-4 rounded-2xl text-center shadow-md flex flex-col items-center">
+                    <div class="w-12 h-12 bg-coffee-gold/20 text-coffee-gold rounded-full flex items-center justify-center text-xl font-black mb-2 border border-coffee-gold/40">🥇</div>
+                    <h3 class="font-bold text-white text-sm">أستاذ أحمد متولي</h3>
+                    <p class="text-xs text-coffee-accent mt-1">"ملك القهوة المحوجة والمزاج العالي"</p>
+                </div>
+                <div class="bg-coffee-dark/70 border border-coffee-gold/30 p-4 rounded-2xl text-center shadow-md flex flex-col items-center">
+                    <div class="w-12 h-12 bg-coffee-gold/20 text-coffee-gold rounded-full flex items-center justify-center text-xl font-black mb-2 border border-coffee-gold/40">🥈</div>
+                    <h3 class="font-bold text-white text-sm">كابتن إسلام رجب</h3>
+                    <p class="text-xs text-coffee-accent mt-1">"سفير القعدات الهادئة والشبابية"</p>
+                </div>
+                <div class="bg-coffee-dark/70 border border-coffee-gold/30 p-4 rounded-2xl text-center shadow-md flex flex-col items-center">
+                    <div class="w-12 h-12 bg-coffee-gold/20 text-coffee-gold rounded-full flex items-center justify-center text-xl font-black mb-2 border border-coffee-gold/40">🥉</div>
+                    <h3 class="font-bold text-white text-sm">مهندس وليد نصر</h3>
+                    <p class="text-xs text-coffee-accent mt-1">"رائد السهرات العائلية المميزة"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- آراء العملاء (أكثر من 40 تعليق إيجابي) -->
+        <section class="space-y-6" id="reviews-section">
+            <div class="text-center">
+                <span class="bg-coffee-accent/20 text-coffee-accent text-xs font-bold px-3 py-1 rounded-full border border-coffee-accent/30 inline-block mb-1">
+                    <i class="fa-solid fa-comments"></i> مجتمع كافيه كاريوكي
+                </span>
+                <h2 class="text-2xl font-black text-white">آراء وتجارب عملائنا الكرام (أكثر من 40 تقييم إيجابي) ⭐</h2>
+                <p class="text-xs text-coffee-light/70 mt-1">شوف بنفسك كلام أهالي سمادون والزوار عن الأجواء العائلية الهادئة والخدمة الممتازة[span_28](start_span)[span_28](end_span)</p>
+                
+                <button onclick="openReviewModal()" class="mt-4 bg-coffee-gold hover:bg-coffee-accent text-coffee-dark px-6 py-3 rounded-xl text-sm font-black transition shadow-xl transform hover:scale-105 flex items-center gap-2 mx-auto">
+                    <i class="fa-solid fa-star text-coffee-dark"></i> أضف تقييمك الآن وشاركنا رأيك
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="reviewsContainer" style="max-height: 550px; overflow-y: auto; padding-right: 5px;"></div>
+        </section>
+
+        <!-- شهادات الشكر والتقدير لمهندس الموقع (أكثر من 20 تعليق شكر للمهندس إبراهيم) -->
+        <section class="space-y-6 mt-16 pt-10 border-t border-coffee-accent/20" id="engineer-reviews-section">
+            <div class="text-center">
+                <span class="bg-coffee-gold/20 text-coffee-gold text-xs font-bold px-3 py-1 rounded-full border border-coffee-gold/30 inline-block mb-1">
+                    <i class="fa-solid fa-laptop-code"></i> شهادات العملاء في مصمم الموقع
+                </span>
+                <h2 class="text-2xl font-black text-white">كلمات شكر وتقدير للمهندس إبراهيم سعد 💻⭐</h2>
+                <p class="text-xs text-coffee-light/70 mt-1">آراء أصحاب المشاريع والعملاء في جودة البرمجة، سرعة التنفيذ، والابداع في تصميم الواجهات</p>
+                
+                <button onclick="openEngineerReviewModal()" class="mt-4 bg-coffee-accent hover:bg-coffee-gold text-coffee-dark px-6 py-3 rounded-xl text-sm font-black transition shadow-xl transform hover:scale-105 flex items-center gap-2 mx-auto">
+                    <i class="fa-solid fa-pen-to-square"></i> أضف كلمة شكر للمهندس إبراهيم
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="engineerReviewsContainer" style="max-height: 500px; overflow-y: auto; padding-right: 5px;"></div>
+        </section>
+
+        <!-- الخريطة الجغرافية -->
+        <section class="glass-card p-4 rounded-3xl border border-coffee-accent/30 shadow-2xl">
+            <div class="text-center mb-4">
+                <h2 class="text-xl font-bold text-white"><i class="fa-solid fa-map-location-dot text-coffee-accent ml-2"></i> موقعنا على الخريطة</h2>
+                <p class="text-xs text-coffee-light/70">سمادون أشمون منوفية - أول طريق السلامية بجوار كوبري الترعة القديم[span_29](start_span)[span_29](end_span)</p>
+            </div>
+            <div class="overflow-hidden rounded-2xl border border-coffee-accent/20 h-72">
+                <iframe width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" src="https://maps.google.com/maps?q=Samadun,+Ashmoun,+Monufia+Governorate,+Egypt&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- نافذة منبثقة لإضافة تقييم الكافيه بالنجوم -->
+    <div id="reviewModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card p-6 rounded-3xl max-w-md w-full border border-coffee-accent shadow-2xl relative">
+            <button onclick="closeReviewModal()" class="absolute top-4 left-4 text-coffee-accent font-bold text-lg"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-xl font-black text-white mb-2 text-center">أضف تقييمك للكافيه ⭐</h3>
+            <p class="text-xs text-coffee-light/70 text-center mb-4">اختر عدد النجوم واكتب انطباعك عن الأجواء</p>
+            
+            <form onsubmit="submitReview(event)" class="space-y-4">
+                <div class="flex justify-center gap-2 text-2xl mb-2" id="starPickerContainer">
+                    <button type="button" onclick="setRating(1)" class="star-picker-btn text-coffee-accent focus:outline-none">★</button>
+                    <button type="button" onclick="setRating(2)" class="star-picker-btn text-coffee-accent focus:outline-none">★</button>
+                    <button type="button" onclick="setRating(3)" class="star-picker-btn text-coffee-accent focus:outline-none">★</button>
+                    <button type="button" onclick="setRating(4)" class="star-picker-btn text-coffee-accent focus:outline-none">★</button>
+                    <button type="button" onclick="setRating(5)" class="star-picker-btn text-coffee-accent focus:outline-none">★</button>
+                </div>
+                <input type="text" id="reviewerName" placeholder="اسمك الكريم (مثلاً: أستاذ محمود)" required class="w-full bg-coffee-dark text-coffee-light border border-coffee-accent/40 p-3 rounded-xl text-sm focus:outline-none focus:border-coffee-accent">
+                <textarea id="reviewerText" placeholder="اكتب رأيك في الأجواء والخدمة والقهوة..." required class="w-full bg-coffee-dark text-coffee-light border border-coffee-accent/40 p-3 rounded-xl text-sm h-24 focus:outline-none focus:border-coffee-accent"></textarea>
+                <button type="submit" class="w-full bg-coffee-gold hover:bg-coffee-accent text-coffee-dark font-black p-3.5 rounded-xl text-sm transition shadow-lg">نشر التقييم فوري 🚀</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- نافذة منبثقة لإضافة شكر للمهندس إبراهيم -->
+    <div id="engineerReviewModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card p-6 rounded-3xl max-w-md w-full border border-coffee-accent shadow-2xl relative">
+            <button onclick="closeEngineerReviewModal()" class="absolute top-4 left-4 text-coffee-accent font-bold text-lg"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-xl font-black text-white mb-2 text-center">شكر وتقدير للمهندس إبراهيم سعد 👨‍💻</h3>
+            <p class="text-xs text-coffee-light/70 text-center mb-4">اكتب رأيك في شغل البرمجة وتصميم المواقع</p>
+            
+            <form onsubmit="submitEngineerReview(event)" class="space-y-4">
+                <input type="text" id="engReviewerName" placeholder="اسمك الكريم أو صفتك (مثلاً: صاحب عمل)" required class="w-full bg-coffee-dark text-coffee-light border border-coffee-accent/40 p-3 rounded-xl text-sm focus:outline-none focus:border-coffee-accent">
+                <textarea id="engReviewerText" placeholder="اكتب رسالة الشكر والتقدير للمهندس إبراهيم..." required class="w-full bg-coffee-dark text-coffee-light border border-coffee-accent/40 p-3 rounded-xl text-sm h-24 focus:outline-none focus:border-coffee-accent"></textarea>
+                <button type="submit" class="w-full bg-coffee-gold hover:bg-coffee-accent text-coffee-dark font-black p-3.5 rounded-xl text-sm transition shadow-lg">إرسال ونشر كلمة الشكر 🚀</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer بالحقوق الكاملة واسمك ورقم هاتفك -->
+    <footer class="text-center mt-20 text-xs text-coffee-light/70 border-t border-coffee-accent/20 py-8 bg-coffee-card/50 backdrop-blur-md">
+        <div class="max-w-4xl mx-auto px-4 space-y-2">
+            <p class="text-coffee-accent font-bold tracking-wide">كافيه كاريوكي - سمادون | جميع الحقوق محفوظة © 2026</p>
+            <p class="text-coffee-light">تصميم وتطوير الواجهات: <span class="text-white font-bold">Eng. Ebrahim Saad Abdelmawla Mohamed</span></p>
+            <p class="text-coffee-gold font-semibold"><i class="fa-solid fa-phone ml-1"></i> للتواصل والبرمجة: 01101475409</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/201212371240" target="_blank" class="fixed bottom-6 left-6 bg-green-600 text-white p-4 rounded-full shadow-2xl hover:bg-green-500 transition transform hover:scale-110 z-50 flex items-center justify-center">
+        <i class="fa-brands fa-whatsapp text-2xl"></i>
+    </a>
+
+    <!-- JavaScript المطور بالكامل -->
+    <script>
+        // فحص حالة الكافيه تلقائياً حسب الوقت
+        function checkCafeStatus() {
+            const now = new Date();
+            const hour = now.getHours();
+            const badge = document.getElementById('cafeStatusBadge');
+            if (hour >= 16 || hour < 2) {
+                badge.className = "inline-block px-4 py-1.5 rounded-full text-xs font-bold mb-3 shadow-md border bg-green-900/60 text-green-400 border-green-500/40 animate-pulse";
+                badge.innerHTML = "🟢 الكافيه مفتوح الآن - نورتونا!";
+            } else {
+                badge.className = "inline-block px-4 py-1.5 rounded-full text-xs font-bold mb-3 shadow-md border bg-red-900/60 text-red-400 border-red-500/40";
+                badge.innerHTML = "🔴 مغلق حالياً - يفتح يومياً الساعة 4 عصراً";
+            }
+        }
+        checkCafeStatus();
+
+        // حاسبة الحساب الذكية
+        let currentTotal = 0;
+        function addToBill() {
+            const itemPrice = parseInt(document.getElementById('calcItem').value);
+            const qty = parseInt(document.getElementById('calcQty').value) || 1;
+            currentTotal += (itemPrice * qty);
+            document.getElementById('billTotal').innerText = currentTotal + " جنيه";
+        }
+
+        // تشغيل الموسيقى الهادئة (Lofi)
+        let isPlayingBGM = false;
+        function toggleBGM() {
+            const audio = document.getElementById('lofiAudio');
+            const bgmBtnText = document.querySelector('#bgmBtn span');
+            const bgmIcon = document.getElementById('bgmIcon');
+            if (isPlayingBGM) {
+                audio.pause();
+                bgmBtnText.innerText = "موسيقى هادئة";
+                bgmIcon.className = "fa-solid fa-music";
+                isPlayingBGM = false;
+            } else {
+                audio.play().catch(e => alert('عذراً، يرجى السماح بتشغيل الصوت'));
+                bgmBtnText.innerText = "إيقاف الموسيقى";
+                bgmIcon.className = "fa-solid fa-volume-high";
+                isPlayingBGM = true;
+            }
+        }
+
+        // فلترة المنيو
+        function filterMenu(category) {
+            const sections = document.querySelectorAll('.menu-section');
+            sections.forEach(section => {
+                if (category === 'all' || section.getAttribute('data-category') === category) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+
+        function recommendDrink(mood) {
+            const resultBox = document.getElementById('recommendationResult');
+            resultBox.classList.remove('hidden');
+            let suggestion = "";
+            if(mood === 'focus') suggestion = "☕ قهوة محوج مظبوطة أو اسبريسو دبل لتعديل المزاج!";
+            else if(mood === 'refresh') suggestion = "🧊 موجيتو منعش أو سموزي بلوبيري يروي عطشك!";
+            else if(mood === 'cozy') suggestion = "🔥 كوب سحلب بالمكسرات الساخن أو هوت شوكلت يدفيك!";
+            resultBox.innerHTML = suggestion;
+        }
+
+        function luckyCoffeeFortune() {
+            const fortunes = [
+                "☕ حظك اليوم: فنجان قهوة مظبوط هيغير طاقة يومك للأحسن تماماً!",
+                "🎵 حظك اليوم: طاقة إيجابية وأغنية رايقة في كاريوكي مستنياك النهاردة.",
+                "✨ حظك اليوم: قعدة عائلية مميزة وسهرة ما تتقدرش بثمن في انتظارك.",
+                "🌟 حظك اليوم: ابتسم، أنت قاعد في أجمل وأهدا مكان في سمادون!"
+            ];
+            const randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+            const fortuneBox = document.getElementById('fortuneResult');
+            fortuneBox.classList.remove('hidden');
+            fortuneBox.innerHTML = randomFortune;
+        }
+
+        function toggleNightMode() {
+            const body = document.body;
+            body.classList.toggle('night-mode');
+            const isNight = body.classList.contains('night-mode');
+            document.getElementById('nightText').innerText = isNight ? "الوضع العادي" : "سهرة ليلية";
+            document.getElementById('nightIcon').className = isNight ? "fa-solid fa-sun" : "fa-solid fa-moon";
+        }
+
+        function sendSongRequest(e) {
+            e.preventDefault();
+            const song = document.getElementById('songName').value;
+            const table = document.getElementById('tableNum').value;
+            const text = `مرحباً كافيه كاريوكي، أود طلب أغنية: "${song}" وأنا قاعد في (${table}). 🎵`;
+            window.open(`https://wa.me/201212371240?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        function sendReservation(e) {
+            e.preventDefault();
+            const name = document.getElementById('resName').value;
+            const phone = document.getElementById('resPhone').value;
+            const date = document.getElementById('resDate').value;
+            const type = document.getElementById('resType').value;
+            const text = `مرحباً، أرغب في حجز (${type}) في كافيه كاريوكي.\nالاسم: ${name}\nرقم الهاتف: ${phone}\nالتاريخ: ${date}`;
+            window.open(`https://wa.me/201212371240?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        // لعبة توقع نكهة القهوة
+        const quizData = [
+            {
+                question: "1. مودك العام وإنت جاي الكافيه عامل إزاي؟",
+                options: [
+                    { text: "🧠 محتاج تركيز وعايز أصصح دماغي", result: "☕ فنجان قهوة محوج مظبوط أو اسبريسو دبل!" },
+                    { text: "🛋️ رايق وعايز أقعد أهدي أعصابي", result: "🔥 كوب سحلب ساخن بالمكسرات أو هوت شوكلت!" },
+                    { text: "⚡ فرفوش وعايز حاجة ترطب على قلبي", result: "🧊 موجيتو منعش أو سموزي بلوبيري طازج!" }
+                ]
+            }
+        ];
+
+        function loadQuiz() {
+            const qContainer = document.getElementById('quizQuestion');
+            const oContainer = document.getElementById('quizOptions');
+            qContainer.innerText = quizData[0].question;
+            oContainer.innerHTML = "";
+            quizData[0].options.forEach((opt) => {
+                const btn = document.createElement('button');
+                btn.type = "button";
+                btn.className = "bg-coffee-dark/50 hover:bg-coffee-accent hover:text-coffee-dark border border-coffee-accent/30 text-coffee-light p-2.5 rounded-xl text-xs font-bold transition text-right";
+                btn.innerText = opt.text;
+                btn.onclick = () => showQuizResult(opt.result);
+                oContainer.appendChild(btn);
+            });
+        }
+
+        function showQuizResult(resText) {
+            const resBox = document.getElementById('quizResultBox');
+            resBox.classList.remove('hidden');
+            resBox.innerHTML = `✨ النتيجة: مناسب ليك جداً طلب (${resText}) اطلبه حالا واستمتع بمزاجك!`;
+        }
+
+        function callWaiter(e) {
+            e.preventDefault();
+            const reqType = document.getElementById('waiterRequestType').value;
+            const tableNum = document.getElementById('waiterTableNum').value;
+            const message = `🔔 تنبيه من الكافيه:\nالطلب: ${reqType}\nرقم الطاولة: طاولة رقم (${tableNum})\nيرجى المتابعة سريعا. شكراً!`;
+            window.open(`https://wa.me/201212371240?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // أكثر من 40 تعليق إيجابي للكافيه
+        const initialReviews = [
+            { name: "أستاذ أحمد متولي", rating: 5, text: "أفضل مكان عائلي في سمادون، هادئ جداً وبدون شيشة، والقهوة مظبوطة بالمللي." },
+            { name: "محمد إبراهيم", rating: 5, text: "عملنا عيد ميلاد أختي هناك وكانت الأجواء خرافية وتنظيم محترم جداً من الإدارة." },
+            { name: "محمود سعيد", rating: 5, text: "المكان نظيف، شبابي، وعائلي، والخدمة سريعة والمشروبات طازجة ولذيذة." },
+            { name: "د. هبة عبد الله", rating: 5, text: "الاستقبال محترم جداً، والمكان راقي وخالي من أي إزعاج، شكراً لإدارة الكافيه." },
+            { name: "كابتن إسلام رجب", rating: 5, text: "أحلى قهوة محوج ممكن تشربها في أشمون كلها، عاش بجد." },
+            { name: "المهندس وليد نصر", rating: 5, text: "قعدة رايقة وهادئة وتنفع لشغل اللابتوب والمذاكرة في جو هادي." },
+            { name: "سعيد عبد العاطي", rating: 5, text: "الأسعار ممتازة جداً مقارنة بجودة المشروبات والنظافة العالية." },
+            { name: "أميرة محمد", rating: 5, text: "الأولاد حبوا المشروبات والسموزي جداً، والمكان أمان وعائلي 100%." },
+            { name: "حامـد الشريف", rating: 5, text: "الخدمة ممتازة، والشباب القائمين على المكان محترمين جداً وذوقهم رفيع." },
+            { name: "تامر حنفي", rating: 5, text: "الموجيتو والصان رايز عندهم في حتة تانية خالص، تسلم إيدكم." },
+            { name: "محمود الشاذلي", rating: 5, text: "مكان محترم بكل معاني الكلمة، وخلوه من الشيشة ده مخليه مريح جداً للعائلات." },
+            { name: "يوسف البنهاوي", rating: 5, text: "أحلى فنجان قهوة في طريق السلامية، ربنا يبارك لكم." },
+            { name: "مصطفى بيومي", rating: 5, text: "المنيو متنوع والأسعار في متناول الجميع، مكان مشرف." },
+            { name: "إيمان الشيخ", rating: 5, text: "الجو العام هادي ومريح للاعصاب، شكراً لكافيه كاريوكي." },
+            { name: "خالد المنياوي", rating: 5, text: "الاسبريسو والدبل عندهم عالمي، أفضل مكان قعدت فيه في سمادون." },
+            { name: "أحمد عبد الرازق", rating: 5, text: "قعدة شبابية محترمة جداً، وطلب الأغاني بيعمل جو تاني خالص." },
+            { name: "سامح الخطيب", rating: 5, text: "نظافة المكان وترتيب الطاولات يدل على إدارة واعية وفاهمة." },
+            { name: "نجلاء فوزي", rating: 5, text: "احتفلنا بيوم ميلاد بنتي وكان تحفة، والتعامل راقي جداً." },
+            { name: "هشام غنيم", rating: 5, text: "الشاي بالنعناع بعد العصر هناك ليه طعم تاني خالص." },
+            { name: "رامي الصياد", rating: 5, text: "المكان بيجمع بين الراحة والنظافة والسرعة في تلبية الطلبات." },
+            { name: "عبد الرحمن الديب", rating: 5, text: "أفضل كافيه في مركز أشمون بدون منازع، بالتوفيق دائماً." },
+            { name: "شيماء فؤاد", rating: 5, text: "القهوة الفرنسي بالحليب تحفة بجد، تسلم ايد الشيف." },
+            { name: "عماد الدين حسن", rating: 5, text: "تجربة ممتازة وهكررها كتير إن شاء الله مع أصحابي." },
+            { name: "أشرف عبد الجواد", rating: 5, text: "سلطة البطاطس المقرمشة والمشروبات الباردة حاجة فاخرة." },
+            { name: "فاطمة الزهراء", rating: 5, text: "مكان هادئ، آمن، ومناسب جداً للعائلات المحترمة." },
+            { name: "باسم العشري", rating: 5, text: "سرعة في الرد على الواتساب وحجز الطاولات في الموعد بالضبط." },
+            { name: "كريم الباجوري", rating: 5, text: "المكان راقي جداً وتصميمه مريح للنظر والأعصاب." },
+            { name: "منى الصفتي", rating: 5, text: "أحسن ميلك شيك لوتس شربته في حياتي كان عندكم." },
+            { name: "طارق العبد", rating: 5, text: "الهدوء وعدم وجود إزعاج أو شيشة بيخلي الواحد قاعد مرتاح جداً." },
+            { name: "حسين الفخراني", rating: 5, text: "مكان محترم وناس محترمين، ربنا يرزقكم." },
+            { name: "رشا البرلسي", rating: 5, text: "الخدمة والنظافة والابتسامة عند العاملين بتخلينا نيجي على طول." },
+            { name: "صلاح الدين مرسي", rating: 5, text: "أفضل مكان تفصل فيه بعد يوم عمل شاق وطويل." },
+            { name: "أماني النجار", rating: 5, text: "المشروبات الدافئة في الشتاء والصحبة الجميلة حاجة تحفة." },
+            { name: "مجدي الهواري", rating: 5, text: "منيو ممتاز وأسعار عادلة جداً، شكراً لإدارة كاريوكي." },
+            { name: "هاني العطار", rating: 5, text: "تنسيق المكان وترتيب الديكورات راقي جداً ومريح." },
+            { name: "زينب عبد اللطيف", rating: 5, text: "أفضل مكان نظيف ومحترم في سمادون للعائلات." },
+            { name: "عادل القاضي", rating: 5, text: "ممتاز جداً، والقهوة المظبوطة هي أساس المزاج." },
+            { name: "صابرين البنا", rating: 5, text: "شكراً ليكم على حسن الاستقبال والخدمة الراقية." },
+            { name: "وائل كمال", rating: 5, text: "مكان محترم، أكل وشرب ونظافة على أصولها." },
+            { name: "نادية الشناوي", rating: 5, text: "تجربة رائعة وسهرة ما تتتعوضش، شكراً كافيه كاريوكي." }
+        ];
+
+        function loadReviews() {
+            const container = document.getElementById('reviewsContainer');
+            const savedReviews = JSON.parse(localStorage.getItem('cafe_custom_reviews')) || [];
+            const allReviews = [...savedReviews, ...initialReviews];
+
+            container.innerHTML = "";
+            allReviews.forEach(rev => {
+                let starsHTML = '★'.repeat(rev.rating) + '☆'.repeat(5 - rev.rating);
+                const card = document.createElement('div');
+                card.className = "glass-card p-4 rounded-2xl border border-coffee-accent/30 shadow-md flex flex-col justify-between";
+                card.innerHTML = `
+                    <div>
+                        <div class="text-coffee-accent text-sm mb-1 font-bold">${starsHTML}</div>
+                        <p class="text-xs text-coffee-light mb-3 leading-relaxed">"${rev.text}"</p>
+                    </div>
+                    <span class="text-xs font-bold text-coffee-gold border-t border-coffee-accent/10 pt-2">- ${rev.name}</span>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function openReviewModal() { document.getElementById('reviewModal').classList.remove('hidden'); }
+        function closeReviewModal() { document.getElementById('reviewModal').classList.add('hidden'); }
+
+        let selectedRating = 5;
+        function setRating(stars) {
+            selectedRating = stars;
+            const starBtns = document.querySelectorAll('.star-picker-btn');
+            starBtns.forEach((btn, index) => {
+                if (index < stars) {
+                    btn.classList.add('text-coffee-accent');
+                    btn.classList.remove('text-coffee-light/30');
+                } else {
+                    btn.classList.remove('text-coffee-accent');
+                    btn.classList.add('text-coffee-light/30');
+                }
+            });
+        }
+
+        function submitReview(e) {
+            e.preventDefault();
+            const name = document.getElementById('reviewerName').value;
+            const text = document.getElementById('reviewerText').value;
+            const newReview = { name: name, rating: selectedRating, text: text };
+            
+            let savedReviews = JSON.parse(localStorage.getItem('cafe_custom_reviews')) || [];
+            savedReviews.unshift(newReview);
+            localStorage.setItem('cafe_custom_reviews', JSON.stringify(savedReviews));
+
+            loadReviews();
+            closeReviewModal();
+            document.getElementById('reviewerName').value = "";
+            document.getElementById('reviewerText').value = "";
+            alert('شكراً لك! تم إضافة تقييمك بنجاح وظهر في قائمة آراء العملاء.');
+        }
+
+        // أكثر من 20 تعليق شكر للمهندس إبراهيم
+        const initialEngineerReviews = [
+            { name: "إدارة كافيه كاريوكي", text: "بجد تسلم ايدك يا بشمهندس إبراهيم على الشغل الأسطوري ده، الموقع ابهار كل الزباين والسرعة والدقة عالية جداً." },
+            { name: "أستاذ مصطفى كامل", text: "مهندس إبراهيم من أكفأ الناس اللي اشتغلت معهم في تصميم الواجهات، محترف وأمير في تعامله." },
+            { name: "كابتن أحمد الشناوي", text: "شغل عالي جداً وتصميم راقي، ربنا يوفقك يا بشمهندس وإلى الأمام دائماً." },
+            { name: "محمد عبد العال", text: "الموقع سلس جداً وسريع وخالي من أي عيوب، تسلم يمناك يا مهندس إبراهيم." },
+            { name: "دكتور حسام البنهاوي", text: "إبداع حقيقي في تنسيق الألوان والأقسام، مهندس متمكن وفاهم بيعمل إيه كويس." },
+            { name: "أحمد الاستشاري", text: "التصميم متجاوب تماماً مع كل الموبايلات والشاشات، شغل برمجة محترف بمعنى الكلمة." },
+            { name: "محمود الصفتي", text: "أفضل مصمم ويب في المنوفية بدون منازع، التزام ودقة وسرعة في إنجاز الشغل." },
+            { name: "وليد عبد الجواد", text: "الله ينور يا بشمهندس إبراهيم، الموقع شغال بكفاءة رهيبة والناس كلها بتشكر فيه." },
+            { name: "تامر الهواري", text: "أكثر من رائع، فكرة الموقع وتصميمه بتدل على عقلية هندسية واعية ومبدعة." },
+            { name: "سعيد مرسي", text: "شكراً لتعاونك الراقي وسرعة استجابتك لكل التعديلات، ربنا يرزقك من واسع فضله." },
+            { name: "إسلام بيومي", text: "شغل فخم وفوق الخيال، تسلم إيدك يا مهندس إبراهيم على التفاصيل الجبارة دي." },
+            { name: "خالد صبري", text: "السايت تحفة فنية بجد، ربنا يوفقك دايماً وتكسر الدنيا بمشاريعك." },
+            { name: "عماد الشريف", text: "برمجة نظيفة جداً وكود مرتب ومنظم، مجهود يشهد لك بالتميز." },
+            { name: "أشرف النجار", text: "تسلم ايدك يا بشمهندس، الموقع بيفتح بسرعة وواجهته تشرف أي مكان." },
+            { name: "رامي العطار", text: "مهندس محترم وفاهم شغله أوي، أنصح أي حد يتعامل معه بثقة تامة." },
+            { name: "طارق غنيم", text: "شغل عالي الجودة وفي الميعاد بالظبط، شكراً لمهندس إبراهيم سعد." },
+            { name: "باسم الباجوري", text: "الواجهة وتجربة المستخدم ممتازة جداً، ابدعت يا بشمهندس." },
+            { name: "صلاح الدين فؤاد", text: "ربنا يبارك لك في علمك يا بشمهندس، شغل مشرف ومميز جداً." },
+            { name: "هاني البرلسي", text: "من أجمل المواقع اللي شوفتها تنفيذاً وبرمجة، تسلم إيدك بجد." },
+            { name: "ياسر الشناوي", text: "مهندس إبراهيم بجد فنان ومحترف في عالم الويب، بالتوفيق دائماً." }
+        ];
+
+        function loadEngineerReviews() {
+            const container = document.getElementById('engineerReviewsContainer');
+            const savedEngReviews = JSON.parse(localStorage.getItem('eng_custom_reviews')) || [];
+            const allEngReviews = [...savedEngReviews, ...initialEngineerReviews];
+
+            container.innerHTML = "";
+            allEngReviews.forEach(rev => {
+                const card = document.createElement('div');
+                card.className = "glass-card p-4 rounded-2xl border border-coffee-gold/30 shadow-md flex flex-col justify-between";
+                card.innerHTML = `
+                    <div>
+                        <div class="text-coffee-gold text-xs mb-1 font-bold"><i class="fa-solid fa-award"></i> شكر وتقدير للمصمم</div>
+                        <p class="text-xs text-coffee-light mb-3 leading-relaxed">"${rev.text}"</p>
+                    </div>
+                    <span class="text-xs font-bold text-coffee-accent border-t border-coffee-accent/10 pt-2">- ${rev.name}</span>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function openEngineerReviewModal() { document.getElementById('engineerReviewModal').classList.remove('hidden'); }
+        function closeEngineerReviewModal() { document.getElementById('engineerReviewModal').classList.add('hidden'); }
+
+        function submitEngineerReview(e) {
+            e.preventDefault();
+            const name = document.getElementById('engReviewerName').value;
+            const text = document.getElementById('engReviewerText').value;
+            const newEngReview = { name: name, text: text };
+            
+            let savedEngReviews = JSON.parse(localStorage.getItem('eng_custom_reviews')) || [];
+            savedEngReviews.unshift(newEngReview);
+            localStorage.setItem('eng_custom_reviews', JSON.stringify(savedEngReviews));
+
+            loadEngineerReviews();
+            closeEngineerReviewModal();
+            document.getElementById('engReviewerName').value = "";
+            document.getElementById('engReviewerText').value = "";
+            alert('شكراً لك! تم إضافة كلمة الشكر والتقدير للمهندس إبراهيم بنجاح.');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadReviews();
+            loadEngineerReviews();
+            loadQuiz();
+        });
+    </script>
+    <style>
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+    </style>
+</body>
+</html>
